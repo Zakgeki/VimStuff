@@ -268,9 +268,10 @@ xnoremap <silent> <C-Down> :<C-u>call MoveVisualDown()<CR>
 
 "vim-plug plugins
 call plug#begin('~/.vim/plugged')
+
 Plug 'arcticicestudio/nord-vim'
 
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -278,15 +279,28 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'tpope/vim-eunuch'
+
+Plug 'tpope/vim-surround'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'Chiel92/vim-autoformat'
+
 call plug#end()
 
-"themeing options
 colorscheme nord
 
 "NerdTree settings and mappings
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 map <C-o> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 "custom key mappings
 "
 map <C-I> :wincmd w<CR>
 map <C-Q> :x<CR>
+map ; :Files<CR>
