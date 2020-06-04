@@ -305,4 +305,5 @@ let NERDTreeShowHidden=1
 "
 map <C-I> :wincmd w<CR>
 map <C-Q> :x<CR>
-map ; :Files<CR>
+nmap ; <C-:>
+inoremap <C-H> <C-W>
