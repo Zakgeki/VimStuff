@@ -252,7 +252,7 @@ function! MoveLineOrVisualDown(line_getter, range)
 endfunction
 
 function! MoveLineOrVisualUpOrDown(move_arg)
-        let col_num = virtcol(".")
+		let col_num = virtcol(".")
         execute "silent! ".a:move_arg
         execute "normal! ".col_num."|"
 endfunction
@@ -266,7 +266,7 @@ vnoremap <silent> <C-Down> :<C-u>call MoveVisualDown()<CR>
 xnoremap <silent> <C-Up> :<C-u>call MoveVisualUp()<CR>
 xnoremap <silent> <C-Down> :<C-u>call MoveVisualDown()<CR>
 
-"vim-plug plugins
+" vim-plug plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
@@ -293,17 +293,46 @@ Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
+" airline stuff
 colorscheme nord
 
-"NerdTree settings and mappings
+	if !exists('g:airline_symbols')
+		let g:airline_symbols = {} 
+   	endif
+  
+	let g:airline_left_sep = ''
+	let g:airline_left_alt_sep = ''
+	let g:airline_right_sep = ''
+	let g:airline_right_alt_sep = ''
+	let g:airline_symbols.crypt = '🔒'
+	let g:airline_symbols.linenr = '☰'
+	let g:airline_symbols.linenr = '␊'
+	let g:airline_symbols.linenr = '␤'
+	let g:airline_symbols.linenr = '¶'
+	let g:airline_symbols.maxlinenr = ''
+	let g:airline_symbols.maxlinenr = '㏑'
+	let g:airline_symbols.branch = '⎇'
+	let g:airline_symbols.paste = 'ρ'
+	let g:airline_symbols.paste = 'Þ'
+	let g:airline_symbols.paste = '∥'
+	let g:airline_symbols.spell = 'Ꞩ'
+	let g:airline_symbols.notexists = 'Ɇ'
+	let g:airline_symbols.whitespace = 'Ξ'
+	let g:airline_symbols.dirty='⚡'
+
+
+" NerdTree settings and mappings
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-o> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-"custom key mappings
-"
-map <C-I> :wincmd w<CR>
+" acustom key mappings
+
+" switch active pane
+map <C-I> :wincmd w<CR> 
+" quit
 map <C-Q> :x<CR>
+" semicolon is colon in normal 
 nmap ; <C-:>
-inoremap <C-H> <C-W>
+inoremap <C-BS> <C-w>
